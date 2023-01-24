@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Box, CssBaseline } from '@mui/material';
+import Header from './components/Header';
+import LoginPage from './components/LoginPage/LoginPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import TranslatePage from './components/TranslatePage/TranslatePage';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Box sx={{ minHeight: '100vh', bgcolor: theme.palette.primary.main }}>
+          <Header />
+
+          <Routes>
+            <Route exact path='/' element={<LoginPage />} />
+            <Route exact path='/translate' element={<TranslatePage />} />
+            <Route exact path='/profile' element={<ProfilePage />} />
+          </Routes>
+
+        </Box>
+      </BrowserRouter>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
