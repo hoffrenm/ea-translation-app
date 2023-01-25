@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, FormControl, TextField } from '@mui/material';
+import { Box, Button, FormControl, TextField, useTheme } from '@mui/material';
 import { ArrowCircleRight, Keyboard } from '@mui/icons-material';
-import { useTheme } from '@mui/material/styles';
 import { logIn } from '../../services/translationService';
 import { useStateValue, setUser, setTranslations } from '../../state';
 
@@ -17,15 +16,13 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const user = await logIn(username);
+    const user = await logIn(username);
 
-      dispatch(setUser(user));
-      dispatch(setTranslations(user.translations));
-      navigate('/translate');
-    } catch (err) {
-      throw new Error(err);
-    }
+    localStorage.setItem('user', JSON.stringify({ username: user.username, id: user.id }));
+
+    dispatch(setUser(user));
+    dispatch(setTranslations(user.translations));
+    navigate('/translate');
   };
 
   const SubmitButton = () => {

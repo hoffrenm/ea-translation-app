@@ -11,14 +11,12 @@ export const logIn = async (username) => {
       const response = await createUser(username);
       const newUser = await response.json();
 
-      console.log(newUser);
-
       return newUser;
     }
 
     return userdata[0];
-  } catch (err) {
-    console.log('Error logging in: ' + err.message);
+  } catch (error) {
+    throw new Error('Error logging in: ' + error.message);
   }
 };
 
@@ -37,11 +35,26 @@ const createUser = async (username) => {
     });
 
     return newUser;
-  } catch (err) {
-    console.log('Error creating user: ' + err.message);
+  } catch (error) {
+    console.log('Error creating user: ' + error.message);
   }
 };
 
-export const saveTranslation = async (translation) => {
-  
-}
+export const saveTranslation = async (translations, id) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/translations/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'X-API-Key': API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        translations: translations
+      })
+    });
+
+    return await response.json();
+  } catch (error) {
+    throw new Error('Error updating translations: ' + error.message);
+  }
+};

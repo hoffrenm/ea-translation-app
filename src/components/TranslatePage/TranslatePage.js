@@ -1,12 +1,16 @@
-import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, useTheme } from '@mui/material';
+import { Navigate } from 'react-router-dom';
+import { useStateValue } from '../../state';
 import TranslateField from './TranslateField';
 import TranslateResult from './TranslateResult';
-// import { useStateValue } from '../../state';
-
 
 const TranslatePage = () => {
   const theme = useTheme();
+  const [{ user }] = useStateValue();
+
+  if (!user?.name) {
+    return <Navigate to='/' replace />;
+  }
 
   return (
     <Box sx={{

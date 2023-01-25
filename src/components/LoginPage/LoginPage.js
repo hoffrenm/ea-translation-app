@@ -1,6 +1,5 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import LoginForm from './LoginForm';
-import { useTheme } from '@mui/material/styles';
 
 const LoginPage = () => {
   const theme = useTheme();
@@ -21,8 +20,8 @@ const LoginPage = () => {
         <img height={250} src='/Logo-Hello.png' alt='Smiling robot'></img>
         <Box sx={{ ml: 6, display: 'grid', gap: -4, flexDirection: 'column' }}>
           <Typography variant='logoText' sx={{ justifySelf: 'start', fontSize: 60 }}>Lost</Typography>
-          <Typography variant='logoText' sx={{ justifySelf: 'start',  fontSize: 60, pl: 5, color: theme.palette.secondary.light }}>In</Typography>
-          <Typography variant='logoText' sx={{ justifySelf: 'end',  fontSize: 60  }}>Translation</Typography>
+          <Typography variant='logoText' sx={{ justifySelf: 'start', fontSize: 60, pl: 5, color: theme.palette.secondary.light }}>In</Typography>
+          <Typography variant='logoText' sx={{ justifySelf: 'end', fontSize: 60 }}>Translation</Typography>
         </Box>
       </Box>
       <LoginForm />

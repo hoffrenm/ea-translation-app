@@ -1,33 +1,40 @@
 import { useState } from 'react';
-import { Box, TextField, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { ArrowCircleRight, Keyboard, ArrowRightAlt } from '@mui/icons-material';
-import { useStateValue, setTranslate } from '../../state';
+import { Box, TextField, Button, useTheme } from '@mui/material';
+import { ArrowCircleRight, Keyboard } from '@mui/icons-material';
+import { useStateValue, setTranslate, setTranslations } from '../../state';
+import { saveTranslation } from '../../services/translationService';
 
 const TranslateField = () => {
   const theme = useTheme();
   const [input, setInput] = useState('');
-  const [, dispatch] = useStateValue();
+  const [{ user, translate, translations }, dispatch] = useStateValue();
 
   const handleChange = (e) => {
     setInput(e.target.value);
   };
 
-  const handleClick = () => {
-    dispatch(setTranslate(input.toLowerCase()));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const inputText = input.toLowerCase();
+    dispatch(setTranslate(inputText));
+
+    // ignore empty input
+    if (!inputText?.length) return;
+
+    const updated = await saveTranslation([...translations, inputText], user.id);
+    dispatch(setTranslations(updated.translations));
   };
 
   const TranslateButton = () => {
     return (
       <Button
         type='submit'
-        onClick={handleClick}
+        onClick={handleSubmit}
         sx={{
           borderRadius: 2,
-          m: 1,
           p: 1,
         }}>
-        <ArrowCircleRight type='button' sx={{ fontSize: 60, color: theme.palette.primary.contrastText }} /></Button>
+        <ArrowCircleRight sx={{ fontSize: 60, color: theme.palette.primary.contrastText }} /></Button>
     );
   };
 
@@ -38,7 +45,8 @@ const TranslateField = () => {
           fullWidth
           autoComplete="off"
           onChange={handleChange}
-          placeholder='Write something to translate'
+          defaultValue={translate ? translate : ''}
+          placeholder={'Write something to translate'}
           sx={{ fontSize: 24, bgcolor: theme.palette.secondary.light, borderRadius: 4 }}
           InputProps={{
             startAdornment: <Keyboard sx={{ fontSize: 60, ml: 1, mr: 2 }} />,

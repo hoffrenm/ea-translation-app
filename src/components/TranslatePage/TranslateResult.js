@@ -1,16 +1,16 @@
-import { Box, useTheme } from '@mui/material';
 import { useEffect } from 'react';
+import { Box, useTheme } from '@mui/material';
 import { useStateValue } from '../../state';
 import Sign from './Sign';
 
 
 const TranslateResult = () => {
   const theme = useTheme();
-  const [{ translate }] = useStateValue();
+  const [{ translate }, dispatch] = useStateValue();
 
   useEffect(() => {
 
-  }, [translate]);
+  }, [translate, dispatch]);
 
   return (
     <Box sx={{

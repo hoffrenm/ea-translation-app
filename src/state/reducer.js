@@ -20,14 +20,6 @@ export const reducer = (state, action) => {
         ...state,
         translate: action.payload
       };
-    case "ADD_TRANSLATIONS":
-      return {
-        ...state,
-        translations: [
-          ...state.translations,
-          action.payload.newTranslation
-        ]
-      };
     case "CLEAR_TRANSLATIONS":
       return {
         ...state,
@@ -38,7 +30,6 @@ export const reducer = (state, action) => {
 };
 
 export const setUser = user => {
-  console.log('SET_USER', user);
   return {
     type: "SET_USER",
     payload: user,
@@ -56,5 +47,11 @@ export const setTranslate = input => {
   return {
     type: "SET_TRANSLATE",
     payload: input
+  };
+};
+
+export const clearTranslations = () => {
+  return {
+    type: "CLEAR_TRANSLATIONS"
   };
 };
