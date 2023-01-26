@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, TextField, Button, useTheme } from '@mui/material';
 import { ArrowCircleRight, Keyboard } from '@mui/icons-material';
 import { useStateValue, setTranslate, setTranslations } from '../../state';
-import { saveTranslation } from '../../services/translationService';
+import { updateTranslations } from '../../services/translationService';
 
 const TranslateField = () => {
   const theme = useTheme();
@@ -21,7 +21,7 @@ const TranslateField = () => {
     // ignore empty input
     if (!inputText?.length) return;
 
-    const updated = await saveTranslation([...translations, inputText], user.id);
+    const updated = await updateTranslations([...translations, inputText], user.id);
     dispatch(setTranslations(updated.translations));
   };
 

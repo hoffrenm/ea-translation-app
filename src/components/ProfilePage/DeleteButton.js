@@ -1,34 +1,38 @@
-import { Box, Button, useTheme } from '@mui/material';
-import { useStateValue, clearTranslations } from '../../state';
+import { Button, useTheme } from '@mui/material';
+import { updateTranslations } from '../../services/translationService';
+import { useStateValue, setTranslate, clearTranslations } from '../../state';
 
-const DeleteButton = (disabled) => {
+const DeleteButton = ({ visible }) => {
   const theme = useTheme();
-  const [, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
-  const handleClick = () => {
-    dispatch(clearTranslations())
-  }
+  const handleClick = async () => {
+    await updateTranslations([], user.id);
+    dispatch(clearTranslations());
+    dispatch(setTranslate(''));
+  };
+
+  if (!visible) return null;
 
   return (
-    <Box>
-      <Button
-        onClick={handleClick}
-        variant='outlined'
-        sx={{
-          borderRadius: 4,
-          p: 2,
-          ml: 1,
-          fontWeight: 600,
-          letterSpacing: 1,
-          color: theme.palette.primary.contrastText,
-          backgroundColor: theme.palette.secondary.light,
-          ":hover": { 
-            backgroundColor: theme.palette.secondary.contrastText,
-            color: theme.palette.primary.dark,
+    <Button
+      onClick={handleClick}
+      variant='outlined'
+      sx={{
+        borderRadius: 2,
+        borderColor: theme.palette.primary.contrastText,
+        p: 2,
+        ml: 1,
+        fontWeight: 600,
+        letterSpacing: 1,
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.secondary.light,
+        ":hover": {
+          backgroundColor: theme.palette.secondary.contrastText,
+          color: theme.palette.primary.dark,
         }
-        }}
-      >Clear translations</Button>
-    </Box>
+      }}
+    >Clear translations</Button>
   );
 };
 

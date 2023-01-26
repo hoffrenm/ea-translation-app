@@ -3,7 +3,6 @@ import { Box, useTheme } from '@mui/material';
 import { useStateValue } from '../../state';
 import Sign from './Sign';
 
-
 const TranslateResult = () => {
   const theme = useTheme();
   const [{ translate }, dispatch] = useStateValue();
@@ -22,8 +21,7 @@ const TranslateResult = () => {
       borderColor: theme.palette.primary.light,
       my: 3,
       mx: 1,
-      py: 2,
-      px: 2,
+      p: 2,
       flexWrap: 'wrap',
       display: 'flex',
       flexDirection: 'row',

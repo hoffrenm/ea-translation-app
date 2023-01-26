@@ -11,13 +11,23 @@ const ProfilePage = () => {
     return <Navigate to='/' replace />;
   }
 
-
   const renderTranslations = () => {
     const recent = translations.slice(-10).reverse();
 
     if (!recent?.length) {
       return (
-        <Typography variant='h6'>No translations just yet!</Typography>
+        <Box sx={{
+          bgcolor: theme.palette.secondary.light,
+          border: 1,
+          borderRadius: 4,
+          borderColor: theme.palette.primary.light,
+          my: 3,
+          mx: 1,
+          py: 2,
+          px: 2,
+        }}>
+          <Typography variant='h6'>No translations just yet!</Typography>
+        </Box>
       );
     }
 
@@ -44,8 +54,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <Box sx={{
-      width: 1,
+    <Box variant='centerbox' sx={{
       mx: 'auto',
       maxWidth: '105ch',
       bgcolor: theme.palette.secondary.main,
@@ -55,9 +64,9 @@ const ProfilePage = () => {
       p: 4,
       my: 4
     }}>
-      <Typography variant='h3'>{user.name}'s most recent translations</Typography>
+      <Typography variant='h4' sx={{ pl: 2 }}>{user.name}'s most recent translations</Typography>
       {renderTranslations()}
-      <DeleteButton />
+      <DeleteButton visible={translations.length} />
     </Box>
   );
 };

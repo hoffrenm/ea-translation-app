@@ -12,7 +12,6 @@ const LogoutButton = () => {
     dispatch(setTranslate(''));
   };
 
-
   return (
     <Box sx={{ p: 2 }}>
       <Button
@@ -20,7 +19,9 @@ const LogoutButton = () => {
         variant='outlined'
         onClick={handleClick}
         sx={{
-          fontWeight: 600, 
+          borderRadius: 2,
+          borderColor: theme.palette.primary.contrastText,
+          fontWeight: 600,
           backgroundColor: theme.palette.secondary.light,
           color: theme.palette.secondary.contrastText,
           letterSpacing: 1,

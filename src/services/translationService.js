@@ -6,7 +6,7 @@ export const logIn = async (username) => {
     const response = await fetch(`${API_BASE_URL}/translations?username=${username}`);
     let userdata = await response.json();
 
-    // if not, create a new user
+    // If not, create a new user
     if (!userdata?.length) {
       const response = await createUser(username);
       const newUser = await response.json();
@@ -40,7 +40,7 @@ const createUser = async (username) => {
   }
 };
 
-export const saveTranslation = async (translations, id) => {
+export const updateTranslations = async (translations, id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/translations/${id}`, {
       method: 'PATCH',

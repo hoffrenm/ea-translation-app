@@ -3,11 +3,11 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Box, ThemeProvider, CssBaseline } from '@mui/material';
 import { theme } from './theme';
 import { setTranslations, setUser, useStateValue } from './state';
+import { logIn } from './services/translationService';
 import Header from './components/NavBar/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import TranslatePage from './components/TranslatePage/TranslatePage';
-import { logIn } from './services/translationService';
 
 const App = () => {
   const [, dispatch] = useStateValue();
@@ -26,12 +26,10 @@ const App = () => {
         dispatch(setTranslations(user.translations));
 
         navigate('/translate');
-
       }
 
       fetchUserData();
     }
-
   }, []);
 
   return (

@@ -23,15 +23,20 @@ export const theme = createTheme({
       letterSpacing: 6,
     }
   },
-  box: {
-    centerBox: {
-      width: 1,
-      mx: 'auto',
-      maxWidth: '105ch',
-      border: 1,
-      borderRadius: 4,
-      p: 2,
-      my: 4
-    }
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'navbutton' },
+          style: {
+            fontSize: 16,
+            letterSpacing: 1.5,
+            borderRadius: 8,
+            fontWeight: 600,
+            display: 'flex',
+          }
+        }
+      ]
+    },
   }
 });

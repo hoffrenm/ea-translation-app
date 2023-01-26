@@ -14,7 +14,6 @@ const TranslatePage = () => {
 
   return (
     <Box sx={{
-      width: 1,
       mx: 'auto',
       maxWidth: '105ch',
       bgcolor: theme.palette.secondary.main,
