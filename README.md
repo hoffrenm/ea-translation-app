@@ -13,6 +13,6 @@ Material-UI is used for styling. Backend API for this assignment provided by htt
 
 ## Screenshots
 
-![Langind page]()
+![Langind page](https://github.com/hoffrenm/ea-translation-app/blob/main/img/landing.png)
 
-![Translation page]()
+![Translation page](https://github.com/hoffrenm/ea-translation-app/blob/main/img/translate.png)
