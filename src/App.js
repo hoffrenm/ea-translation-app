@@ -18,18 +18,17 @@ const App = () => {
 
     // Fetch translations from API if
     // user has already logged in
-    if (existingUser?.username) {
-      async function fetchUserData() {
+    async function fetchUserData() {
+      if (existingUser?.username) {
         const user = await logIn(existingUser.username);
 
         dispatch(setUser(user));
         dispatch(setTranslations(user.translations));
-
         navigate('/translate');
       }
-
-      fetchUserData();
     }
+
+    fetchUserData();
   }, []);
 
   return (

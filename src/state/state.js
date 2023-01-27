@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 
+// you can introduce variables to context here.
+// objects, arrays and primitive types are fine
 const initialState = {
   user: {},
   translations: [],
@@ -21,4 +23,8 @@ export const StateProvider = ({ reducer, children }) => {
   );
 };
 
+// you can refer to variables in context by using useStateValue import e.g.
+// const [{variableName}, dispatch] = useStateValue();
+// const [{user, translations}] = useStateValue();
+// const [, dispatch] = useStateValue();
 export const useStateValue = () => useContext(StateContext);
